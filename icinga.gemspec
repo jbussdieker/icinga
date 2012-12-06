@@ -8,10 +8,9 @@ Gem::Specification.new do |gem|
   gem.version       = Icinga::VERSION
   gem.authors       = ["Joshua Bussdieker"]
   gem.email         = ["jbussdieker@gmail.com"]
-  gem.homepage      = "http://github.com/jbussdieker/icinga"
   gem.description   = %q{Facilitates communication with Icinga servers.}
   gem.summary       = %q{Icinga API tools}
-  gem.homepage      = ""
+  gem.homepage      = "http://github.com/jbussdieker/icinga"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
