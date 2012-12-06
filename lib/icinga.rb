@@ -1,5 +1,5 @@
 require "icinga/version"
+require "icinga/server"
 
 module Icinga
-  # Your code goes here...
 end
