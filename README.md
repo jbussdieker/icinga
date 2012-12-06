@@ -18,7 +18,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+ require 'icinga'
+ 
+ server = Icinga::Server.new(:host => "mon.example.com")
+ puts server.hosts
 
 ## Contributing
 
