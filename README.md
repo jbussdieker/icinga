@@ -1,5 +1,7 @@
 # Icinga
 
+[![Build Status](https://secure.travis-ci.org/jbussdieker/icinga.png?branch=master)](https://travis-ci.org/jbussdieker/icinga)
+
 Facilitates communication with Icinga servers.
 
 ## Installation
