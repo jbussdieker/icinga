@@ -25,6 +25,7 @@ require 'icinga'
 
 server = Icinga::Server.new(:host => "mon.example.com")
 puts server.hosts
+puts server.services
 `````
 
 ## Contributing
