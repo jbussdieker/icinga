@@ -1,6 +1,6 @@
 # Icinga
 
-TODO: Write a gem description
+Facilitates communication with Icinga servers.
 
 ## Installation
 
