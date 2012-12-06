@@ -21,4 +21,9 @@ describe Icinga::Server do
   it "should create a request" do
     @icinga.new_request("/").should be_kind_of(Net::HTTP::Get)
   end
+
+  it "should set basic auth" do
+    @icinga.options[:user] = "Foo"
+    @icinga.new_request("/").get_fields("Authorization").first.should match(/^Basic\s.*/)
+  end
 end
