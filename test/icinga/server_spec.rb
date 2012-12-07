@@ -12,6 +12,9 @@ describe Icinga::Server do
     it "should set the default host" do
       @icinga.options[:host].should match("localhost")
     end
+    it "should set the default remote path" do
+      @icinga.options[:remote_path].should match("/icinga/cgi-bin/status.cgi")
+    end
   end
 
   it "should create a connection" do
