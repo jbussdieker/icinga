@@ -1,8 +1,9 @@
 # Icinga
 
-[![Build Status](https://secure.travis-ci.org/jbussdieker/icinga.png?branch=master)](https://travis-ci.org/jbussdieker/icinga)
-
 Facilitates communication with Icinga servers.
+
+[![Build Status](https://secure.travis-ci.org/jbussdieker/icinga.png?branch=master)](https://travis-ci.org/jbussdieker/icinga)
+[![Code Quality](https://codeclimate.com/badge.png)](https://codeclimate.com/github/jbussdieker/icinga)
 
 ## Installation
 
