@@ -15,6 +15,17 @@ describe Icinga::Server do
     it "should set the default remote path" do
       @icinga.options[:remote_path].should match("/icinga/cgi-bin/status.cgi")
     end
+    it "should set the default format" do
+      @icinga.options[:format].should match("json")
+    end
+  end
+
+  it "should create a responder for hosts" do
+    @icinga.hosts.should be_kind_of(Icinga::Responder)
+  end
+
+  it "should create a responder for services" do
+    @icinga.services.should be_kind_of(Icinga::Responder)
   end
 
   it "should create a connection" do
