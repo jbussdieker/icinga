@@ -1,11 +1,13 @@
-require 'csv'
-require 'json'
-
 module Icinga
   class Responder
-    def initialize(server, request)
-      @server = server
-      @request = request
+    attr_reader :data
+
+    require 'icinga/responder/json'
+    require 'icinga/responder/csv'
+
+    def self.create(klass, server, request)
+      responder_klass = Icinga.const_get("#{server.options[:format].upcase}Responder")
+      responder_klass.new(klass, server, request)
     end
 
     def response
@@ -16,17 +18,18 @@ module Icinga
       end
     end
 
-    def data
-      if response.kind_of? Net::HTTPSuccess
-        {:data => JSON.parse(response)} if @server.options[:format] == "json"
-        {:data => CSV.parse(response)} if @server.options[:format] == "csv"
-      else
-        {:error => response.message}
-      end
+    def initialize(klass, server, request)
+      @klass = klass
+      @server = server
+      @request = request
     end
 
     def to_s
-      data[:data] || ""
+      data.to_s
+    end
+
+    def each
+      data.each {|item| yield(@klass.new(@server, item))}
     end
   end
 end

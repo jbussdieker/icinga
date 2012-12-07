@@ -22,11 +22,11 @@ module Icinga
     end
 
     def hosts
-      Responder.new(self, new_request("?hostgroup=all&style=hostdetail"))
+      Responder.create(Host, self, new_request("?hostgroup=all&style=hostdetail"))
     end
 
-    def services
-      Responder.new(self, new_request("?host=all&style=servicedetail"))
+    def services(host=nil)
+      Responder.create(Service, self, new_request("?host=#{host.nil? ? "all" : host}&style=servicedetail"))
     end
 
     def initialize(options = {})
