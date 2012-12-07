@@ -3,8 +3,8 @@ module Icinga
     require 'icinga/object/host'
     require 'icinga/object/service'
 
-    def initialize(server, data)
-      @server = server
+    # @param [Hash] data
+    def initialize(data)
       merge!(data)
       name_field = self.class.to_s.split("::").last.downcase
       self["name"] = data[name_field]

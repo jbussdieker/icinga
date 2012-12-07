@@ -2,7 +2,7 @@ require 'icinga'
 
 describe Icinga::Object do
   before do
-    @object = Icinga::Object.new(nil, {"object"=>"name"})
+    @object = Icinga::Object.new({"object"=>"name"})
   end
 
   describe "when created" do

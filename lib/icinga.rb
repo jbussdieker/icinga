@@ -1,5 +1,5 @@
 require "icinga/version"
-require "icinga/server"
+require "icinga/client"
 require "icinga/responder"
 require "icinga/object"
 

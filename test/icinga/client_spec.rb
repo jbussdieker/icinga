@@ -1,8 +1,8 @@
 require 'icinga'
 
-describe Icinga::Server do
+describe Icinga::Client do
   before do
-    @icinga = Icinga::Server.new
+    @icinga = Icinga::Client.new
   end
 
   describe "when initialized" do

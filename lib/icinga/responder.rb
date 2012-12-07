@@ -5,22 +5,22 @@ module Icinga
     require 'icinga/responder/json'
     require 'icinga/responder/csv'
 
-    def self.create(klass, server, request)
-      responder_klass = Icinga.const_get("#{server.options[:format].upcase}Responder")
-      responder_klass.new(klass, server, request)
+    def self.create(klass, client, request)
+      responder_klass = Icinga.const_get("#{client.options[:format].upcase}Responder")
+      responder_klass.new(klass, client, request)
     end
 
     def response
       begin
-        @response ||= @server.connection.request(@request)
+        @response ||= @client.connection.request(@request)
       rescue Exception => e
         e
       end
     end
 
-    def initialize(klass, server, request)
+    def initialize(klass, client, request)
       @klass = klass
-      @server = server
+      @client = client
       @request = request
     end
 
@@ -29,7 +29,7 @@ module Icinga
     end
 
     def each
-      data.each {|item| yield(@klass.new(@server, item))}
+      data.each {|item| yield(@klass.new(item))}
     end
   end
 end

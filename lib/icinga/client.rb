@@ -1,7 +1,9 @@
 require 'net/http'
 
 module Icinga
-  class Server
+
+  # Client connection to Icinga server
+  class Client
     attr_accessor :options
 
     @@default_options = {
@@ -11,14 +13,9 @@ module Icinga
       :format => "json",
     }
 
-    def connection
-      @conn ||= Net::HTTP.new(@options[:host], @options[:port])
-    end
-
-    def new_request(path)
-      req = Net::HTTP::Get.new(@options[:remote_path] + path + "&" + @options[:format] + "output")
-      req.basic_auth @options[:user], @options[:password] if @options[:user]
-      req
+    # @param [Hash] options
+    def initialize(options = {})
+      @options = @@default_options.merge(options)
     end
 
     def hosts
@@ -29,8 +26,14 @@ module Icinga
       Responder.create(Service, self, new_request("?host=#{host.nil? ? "all" : host}&style=servicedetail"))
     end
 
-    def initialize(options = {})
-      @options = @@default_options.merge(options)
+    def connection
+      @conn ||= Net::HTTP.new(@options[:host], @options[:port])
+    end
+
+    def new_request(path)
+      req = Net::HTTP::Get.new(@options[:remote_path] + path + "&" + @options[:format] + "output")
+      req.basic_auth @options[:user], @options[:password] if @options[:user]
+      req
     end
   end
 end

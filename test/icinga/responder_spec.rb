@@ -2,8 +2,8 @@ require 'icinga'
 
 describe Icinga::Responder do
   before do
-    @server = Icinga::Server.new
-    @responder = Icinga::Responder.new(Icinga::Object, @server, @server.new_request(""))
+    @client = Icinga::Client.new
+    @responder = Icinga::Responder.new(Icinga::Object, @client, @client.new_request(""))
   end
 
   it "should create a response" do
