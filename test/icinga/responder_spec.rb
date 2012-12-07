@@ -7,7 +7,7 @@ describe Icinga::Responder do
   end
 
   it "should create a response" do
-    @responder.response.should be_kind_of(Net::HTTPResponse)
+    @responder.response.should respond_to(:message)
   end
 
   it "should respond to data with parsed data" do
@@ -19,6 +19,6 @@ describe Icinga::Responder do
   end
 
   it "should respond with empty string for bad connection/request" do
-    @responder.to_s.should match("")
+    @responder.to_s.should match(/^$/)
   end
 end

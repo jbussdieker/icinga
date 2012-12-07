@@ -9,7 +9,11 @@ module Icinga
     end
 
     def response
-      @response ||= @server.connection.request(@request)
+      begin
+        @response ||= @server.connection.request(@request)
+      rescue Exception => e
+        e
+      end
     end
 
     def data
