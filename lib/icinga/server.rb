@@ -8,6 +8,7 @@ module Icinga
     @@default_options = {
       :host => "localhost",
       :port => 80,
+      :remote_path => "/icinga/cgi-bin/status.cgi", 
     }
 
     def connection
@@ -21,16 +22,16 @@ module Icinga
     end
 
     def hosts
-      resp = connection.request(new_request("/icinga/cgi-bin/status.cgi?hostgroup=all&style=hostdetail&jsonoutput"))
+      resp = connection.request(new_request(@options[:remote_path] + "?hostgroup=all&style=hostdetail&jsonoutput"))
       JSON.parse(resp.body)
     end
 
     def services
-      resp = connection.request(new_request("/icinga/cgi-bin/status.cgi?host=all&style=servicedetail&jsonoutput"))
+      resp = connection.request(new_request(@options[:remote_path] + "?host=all&style=servicedetail&jsonoutput"))
       JSON.parse(resp.body)
     end
 
-    def initialize(options={})
+    def initialize(options = {})
       @options = @@default_options.merge(options)
     end
   end
